@@ -1,0 +1,21 @@
+git config --global user.name "mutekval"
+git config --global user.email mutekval@163.com
+
+destdir="/root/.ssh/mutekval/id*"
+
+exp_cmds="/root/.ssh/embednginx/ /
+            /root/.ssh/mutekval/ /
+            /root/.ssh/simplersys/ "
+checkfile="id_rsa"
+
+
+for cmd in $exp_cmds
+do
+  if [ -e $cmd$checkfile ]
+  then
+    echo "$cmd$checkfile存在\n"
+  else
+    mv /root/.ssh/id* $cmd
+    mv $destdir /root/.ssh/
+  fi
+done
